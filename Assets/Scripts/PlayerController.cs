@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
     private Joystick joystick;
 
     [SerializeField]
@@ -19,15 +18,20 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
+    }
+
+    public void LoadJoystick()
+    {
         joystick = GameObject.Find("Fixed Joystick").GetComponent<Joystick>();
     }
 
     private void FixedUpdate()
     {
-        Controller();
+        if (joystick != null) ControllerEngage();
     }
 
-    private void Controller()
+    private void ControllerEngage()
     {
         speed = new Vector2(joystick.Horizontal, joystick.Vertical).magnitude * speedMultiplier;
 
@@ -39,7 +43,10 @@ public class PlayerController : MonoBehaviour
 
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
-            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            //transform.Translate(Vector3.forward * Time.deltaTime * speed);
         }
+
+        transform.Translate(transform.InverseTransformDirection(Vector3.forward) * Time.deltaTime * speedMultiplier * Input.GetAxis("Vertical"));
+        transform.Translate(transform.InverseTransformDirection(Vector3.right) * Time.deltaTime * speedMultiplier * Input.GetAxis("Horizontal"));
     }
 }

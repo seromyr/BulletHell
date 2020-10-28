@@ -10,7 +10,7 @@ public class Shooter : MonoBehaviour
     private float time;
     void Start()
     {
-        destroyableBullet = Resources.Load<GameObject>("Prefabs/KillAbleBullet");
+        //destroyableBullet = Resources.Load<GameObject>("Prefabs/KillAbleBullet");
         time = Time.time;
     }
 
@@ -19,7 +19,7 @@ public class Shooter : MonoBehaviour
     {
         if (Time.time >= time + 0.1f)
         {
-            var meNew = Instantiate(destroyableBullet, transform.position + transform.forward * 2, transform.rotation);
+            var meNew = Instantiate(destroyableBullet, transform.position + transform.forward, transform.rotation);
             meNew.GetComponent<SelfMovingFoward>().direction = transform.position;
             time = Time.time;
         }
