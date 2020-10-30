@@ -80,7 +80,7 @@ public class UI_MainMenu_Mechanic : MonoBehaviour
         mainMenuBkg.color = Color.black;
 
         // Display title
-        mainMenuTitle.text = "Bullet Hell Prototype v0.1a";
+        mainMenuTitle.text = "Bullet Hell Prototype v0.1b";
         mainMenuTitle.color = Color.white;
 
         newGame = mainMenuBkg.transform.Find("NewGame").GetComponent<Button>();
@@ -94,7 +94,7 @@ public class UI_MainMenu_Mechanic : MonoBehaviour
 
     private void SplashScreenInputReading(KeyCode key)
     {
-        if (Input.GetKey(key))
+        if (Input.GetKey(key) || Input.GetMouseButton(0))
         {
             splashBkg.gameObject.SetActive(false);
             mainMenuBkg.gameObject.SetActive(true);

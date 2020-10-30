@@ -2,27 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class UI_Control : MonoBehaviour
 {
-    public static Player main;
-
-    private Vector3 startPos;
+    public static UI_Control main;
 
     private void Awake()
     {
+        // Make the Control Panel a Singleton
         SingletonMaker();
-        startPos = transform.position;
-    }
-
-    public void Reset()
-    {
-        transform.rotation = Quaternion.identity;
-        transform.position = startPos;
-    }
-
-    void Update()
-    {
-        
     }
 
     private void SingletonMaker()
@@ -31,7 +18,7 @@ public class Player : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             main = this;
-            Debug.Log("Player is created");
+            Debug.Log("Control Panel created");
         }
         else if (main != this)
         {

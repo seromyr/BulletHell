@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerEntity : Entity
 {
-    public string Name { get { return _name; } }
-    public GameObject Form { get { return _body; } }
-    public GameObject Avatar { get { return _avatar; } }
+    //private Vector3 startPos;
 
     public PlayerEntity()
     {
-        _body = SetForm(PrimeObj.PLAYER);
-        _name = PrimeObj.PLAYER;
+        _body        = SetForm(PrimeObj.PLAYER);
+        _name        = PrimeObj.PLAYER;
+        _hitpointMax = PlayerAttributes.PLAYER_MAXHEALTH;
+        _hitpoint    = _hitpointMax;
+        _damage      = PlayerAttributes.PLAYER_DAMAGE;
 
         CreateAvatar();
 
@@ -19,7 +20,13 @@ public class PlayerEntity : Entity
         _skin = Object.Instantiate(ChangeSkin(PlayerSkin.DEFAULT), _avatar.transform);
         _skin.name = PlayerSkin.DEFAULT;
 
-        // Assign Player class
-        _avatar.AddComponent<Player>();
+        //startPos = _avatar.transform.position;
+    }
+
+    public void Reset()
+    {
+        _avatar.transform.rotation = Quaternion.identity;
+        //_avatar.transform.position = startPos;
+        _hitpoint = _hitpointMax;
     }
 }

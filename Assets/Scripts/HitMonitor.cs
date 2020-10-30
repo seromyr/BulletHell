@@ -65,6 +65,6 @@ public class HitMonitor : MonoBehaviour
     {
         takeDamageFX.Play();
         count++;
-        Debug.Log(count);
+        //Debug.Log(count);
     }
 }

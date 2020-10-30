@@ -13,6 +13,8 @@ public class UI_InGameMenu_Mechanic : MonoBehaviour
     private GameObject inGameMenuScreen;
     private Button pauseGame, resumeGame, returnToMainMenu;
 
+    private Text instructionMessage;
+
     private void Awake()
     {
         // Make the In Game Menu a Singleton
@@ -55,6 +57,8 @@ public class UI_InGameMenu_Mechanic : MonoBehaviour
 
         returnToMainMenu = inGameMenuScreen.transform.Find("GoToMainMenu").GetComponent<Button>();
         returnToMainMenu.onClick.AddListener(GoToMainMenu);
+
+        instructionMessage = transform.Find("Instruction").GetComponentInChildren<Text>();
     }
 
     private void PauseGame()
@@ -77,5 +81,10 @@ public class UI_InGameMenu_Mechanic : MonoBehaviour
     public void SetActiveCanvas(bool value)
     {
         canvas.enabled = value;
+    }
+
+    public void SendInstruction(string text)
+    {
+        instructionMessage.text = text;
     }
 }
